@@ -14,7 +14,7 @@ func FormHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tmpl := template.Must(template.ParseFiles("form.html"))
+	tmpl := template.Must(template.ParseFiles("templates/form.html"))
 	err := tmpl.Execute(w, nil)
 	if err != nil {
 		http.Error(w, "HTTP status 500 - Internal Server Errors", http.StatusInternalServerError)
@@ -49,7 +49,7 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 	// Generate ASCII art
 	art := utils.GenerateAsciiArt(text, asciiChars)
 
-	tmpl := template.Must(template.ParseFiles("result.html"))
+	tmpl := template.Must(template.ParseFiles("templates/result.html"))
 	err = tmpl.Execute(w, art)
 	if err != nil {
 		http.Error(w, "500 internal server error", http.StatusInternalServerError)
