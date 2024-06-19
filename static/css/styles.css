@@ -1,5 +1,6 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
 }
 
 a {
@@ -7,15 +8,21 @@ a {
 }
 
 h1 {
-    color: #333;
+    color: #007BFF;
     text-align: center;
     font-size: 40px;
 }
 .result h1 {
     text-align: start;
 }
+
+#asciiForm {
+    background-color: #fff;
+    width: 500px;
+    height: 400px;
+}
+
 form {
-    width: 330px;
     margin: 20px auto;
 }
 
