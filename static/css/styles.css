@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    font-size: 40px;
+}
+.result h1 {
+    text-align: start;
+}
+form {
+    width: 330px;
+    margin: 20px auto;
+}
+
+textarea {
+    width: 100%;
+    height: 50px;
+}
+
+input[type="submit"], .result a {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.result a:hover {
+    background-color: #0056b3;
+}

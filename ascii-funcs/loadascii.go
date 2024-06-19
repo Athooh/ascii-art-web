@@ -8,7 +8,7 @@ import (
 
 const (
 	expectedAsciiChars = 95
-	expectedlines      = 8
+	expectedlines = 8
 )
 
 // LoadAsciiChars loads ASCII characters from a file into a map.
@@ -33,7 +33,7 @@ func LoadAsciiChars(filename string) (map[byte][]string, error) {
 	for scanner.Scan() {
 		line := scanner.Text()
 		// Append lines to current character's value slice until 8 lines are read.
-		if count != expectedlines { // 8
+		if count != expectedlines {
 			asciiChars[currentChar] = append(asciiChars[currentChar], line)
 			count++
 		} else {
@@ -51,7 +51,7 @@ func LoadAsciiChars(filename string) (map[byte][]string, error) {
 	}
 
 	// Print error for incorrect number of ASCII characters
-	if len(asciiChars) != expectedAsciiChars { // 95
+	if len(asciiChars) != expectedAsciiChars {
 		return nil, fmt.Errorf("expected %d but got %d ASCII CHARACTERS. Ensure you use the correct number of ASCII CHARACTERS", expectedAsciiChars, len(asciiChars))
 	}
 
@@ -61,9 +61,4 @@ func LoadAsciiChars(filename string) (map[byte][]string, error) {
 	}
 
 	return asciiChars, nil
-}
-
-// CheckNilError prints the error message.
-func CheckNilError(err error) {
-	fmt.Println("Error:", err)
 }
