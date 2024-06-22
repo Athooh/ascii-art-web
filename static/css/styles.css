@@ -17,13 +17,9 @@ h1 {
     width: 800px;
     margin: auto;
 }
+
 .result h1 {
     text-align: center;
-}
-
-.result a {
-    margin: 20px auto;
-    width: 50%;
 }
 
 #asciiForm {
@@ -42,11 +38,26 @@ form {
 }
 
 textarea {
-    width: 100%;
+    width: 99%;
     height: 50px;
+    border-radius: 4px;
 }
 
-input[type="submit"], .result a {
+input[type="submit"] {
+    padding: 15px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 4px;
+}
+
+.result a {
+    display: block; /* Ensure the link takes up the full width */
+    margin: 20px auto;
+    width: 50%; /* Span 50% of the .result width */
+    text-align: center;
     padding: 15px 20px;
     background-color: #007BFF;
     color: white;
@@ -68,6 +79,7 @@ input[type="submit"]:hover {
     background-color: #f8f9fa;
     width: 100%;
     height: 40px;
+    border-radius: 4px;
 }
 
 pre {
@@ -78,5 +90,5 @@ pre {
     border-radius: 4px;
     margin: 20px auto;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    overflow-x: auto; /* Add this line */
+    overflow-x: auto;
 }
