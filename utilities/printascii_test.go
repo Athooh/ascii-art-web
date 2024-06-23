@@ -1,4 +1,4 @@
-package asciiArt
+package utils
 
 import (
 	"bytes"
@@ -14,7 +14,7 @@ func Test_PrintAsciiArt(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to get working directory: %v", err)
 	}
-	asciiFilePath := filepath.Join(basePath, "..", "standard.txt")
+	asciiFilePath := filepath.Join(basePath, "..", "banners/standard.txt")
 
 	// Load the ASCII characters from the sample banner file for testing
 	asciiChars, err := LoadAsciiChars(asciiFilePath)

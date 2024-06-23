@@ -3,8 +3,6 @@ package handler
 import (
 	"html/template"
 	"net/http"
-
-	asciiArt "web/ascii-funcs"
 	utils "web/utilities"
 )
 
@@ -40,7 +38,7 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Load ASCII characters from the specified file in the 'banners' directory
-	asciiChars, err := asciiArt.LoadAsciiChars("banners/" + banner + ".txt")
+	asciiChars, err := utils.LoadAsciiChars("banners/" + banner + ".txt")
 	if err != nil {
 		http.Error(w, "500 internal server error: could not load banner", http.StatusInternalServerError)
 		return

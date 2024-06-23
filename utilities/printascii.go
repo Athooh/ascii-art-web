@@ -1,4 +1,4 @@
-package asciiArt
+package utils
 
 import (
 	"fmt"
@@ -62,4 +62,20 @@ func ProcessArguments(args string, asciiChars map[byte][]string) {
 			PrintAsciiArt(arg, asciiChars) // Print ASCII art for the non-empty argument
 		}
 	}
+}
+
+func GenerateAsciiArt(text string, asciiChars map[byte][]string) string {
+	var result strings.Builder
+	text = ReplaceSpecChars(text)
+
+	for _, line := range strings.Split(text, "\n") {
+		for i := 0; i < 8; i++ {
+			for _, char := range line {
+				result.WriteString(asciiChars[byte(char)][i])
+			}
+			result.WriteString("\n")
+		}
+		result.WriteString("\n")
+	}
+	return result.String()
 }

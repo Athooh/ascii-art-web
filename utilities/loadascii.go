@@ -1,4 +1,4 @@
-package asciiArt
+package utils
 
 import (
 	"bufio"
