@@ -15,7 +15,7 @@ h1 {
     font-size: 40px;
 }
 
-.result {
+.result, .error {
     width: 800px;
     margin: auto;
 }
@@ -62,7 +62,7 @@ input[type="submit"] {
 .result a {
     display: block; /* Ensure the link takes up the full width */
     margin: 20px auto;
-    width: 50%; /* Span 50% of the .result width */
+    width: 500px; /* Span 50% of the .result width */
     text-align: center;
     padding: 15px 20px;
     background-color: #007BFF;
@@ -90,8 +90,8 @@ input[type="submit"]:hover {
 
 pre {
     width: 100%; /* or specify a fixed width like 800px */
-    max-width: 100%;
-    background-color: #fff;
+    /* max-width: 100%; */
+    background-color: rgba(255, 255, 255, 0.5);
     padding: 20px;
     border-radius: 5px;
     margin: 20px auto;
@@ -100,3 +100,4 @@ pre {
     color: #007BFF;
     font-size: 15px;
 }
+

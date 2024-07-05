@@ -8,9 +8,9 @@
 </head>
 <body>
     <h1>ASCII Art Generator</h1>
-    <form id="asciiForm" action="/ascii-art" method="POST">
+    <form id="asciiForm" action="/" method="POST">
         <label for="text">Text:</label><br>
-        <textarea id="text" name="text" rows="10" cols="30" placeholder="Enter text here..."></textarea><br><br>
+        <textarea id="text" name="text" rows="10" cols="30" placeholder="Enter text here...">{{.Text}}</textarea><br><br>
         <label for="banner">Banner Style:</label><br>
         <select id="banner" name="banner">
             <option value="standard">Standard</option>
@@ -19,6 +19,19 @@
         </select><br><br>
         <input type="submit" value="Generate">
     </form>
+    
+    {{if .Error}}
+    <div class="error">
+        <pre>Error: {{.Error}}</pre>
+    </div>
+    {{else if .Art}}
+    <div class="result">
+        <h1>ASCII Art Result</h1>
+        <pre>{{.Art}}</pre>
+        <a href="/">Refresh</a>
+    </div>
+    {{end}}
+
+    <script src="/static/js/scripts.js" defer></script>
 </body>
-<script src="/static/js/scripts.js" defer></script>
 </html>

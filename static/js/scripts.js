@@ -15,9 +15,6 @@ document.getElementById('asciiForm').onsubmit = function(e) {
     })
     .then(response => response.text())
     .then(data => {
-        window.history.pushState({}, '', '/ascii-art');
-        document.open();
-        document.write(data);
-        document.close();
+        document.querySelector('.result').innerHTML = data;
     });
 };

@@ -6,20 +6,18 @@ import (
 )
 
 // PrintAsciiArt prints the given text as ASCII art using the provided map of characters.
-func PrintAsciiArt(text string, asciiChars map[byte][]string) {
-	// Check if any character is outside the ASCII range (32-127)
+func PrintAsciiArt(text string, asciiChars map[byte][]string) error {
 	for _, char := range text {
 		if char > 127 || char < 32 {
-			fmt.Printf("Error: Character %q is not accepted\n", char)
-			return
+			return fmt.Errorf("character %q is not accepted", char)
 		}
 	}
 
-	// Print each line of the ASCII art
 	for i := 0; i < 8; i++ {
 		PrintLine(text, asciiChars, i)
 		fmt.Println()
 	}
+	return nil
 }
 
 // PrintLine prints a single line of the ASCII art for the given text.
@@ -29,10 +27,16 @@ func PrintLine(text string, asciiChars map[byte][]string, line int) {
 	}
 }
 
-func GenerateAsciiArt(text string, asciiChars map[byte][]string) string {
+func GenerateAsciiArt(text string, asciiChars map[byte][]string) (string, error) {
 	var result strings.Builder
 
 	for _, line := range strings.Split(text, "\n") {
+		for _, char := range line {
+			if char > 127 || char < 32 {
+				return "", fmt.Errorf("character %q is not accepted", char)
+			}
+		}
+
 		for i := 0; i < 8; i++ {
 			for _, char := range line {
 				result.WriteString(asciiChars[byte(char)][i])
@@ -41,5 +45,5 @@ func GenerateAsciiArt(text string, asciiChars map[byte][]string) string {
 		}
 		result.WriteString("\n")
 	}
-	return result.String()
+	return result.String(), nil
 }
