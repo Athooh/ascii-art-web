@@ -26,32 +26,23 @@ func FormHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
-
-	text := r.FormValue("text")
-	banner := r.FormValue("banner")
-
-	pageData := PageData{Text: text}
-
 	if r.Method != http.MethodPost {
 		http.Error(w, "HTTP status 405 - method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
 
-	if text == "" {
-		pageData.Error = "Bad Request: 'text' parameter is required"
+	text := r.FormValue("text")
+	banner := r.FormValue("banner")
+	pageData := PageData{Text: text}
+
+	if text == "" || containsNonASCII(text) {
+		pageData.Error = "Bad Request: 'text' parameter is required and should contain only ASCII characters."
 		renderForm(w, pageData, r)
 		return
 	}
 
 	if banner == "" {
 		banner = "standard"
-	}
-
-	// Check for non-ASCII characters
-	if containsNonASCII(text) {
-		pageData.Error = "Input contains non-ASCII characters or emojis. Please use only ASCII characters."
-		renderForm(w, pageData, r)
-		return
 	}
 
 	// Load ASCII characters from the specified file in the 'banners' directory
@@ -94,8 +85,7 @@ func renderForm(w http.ResponseWriter, data PageData, r *http.Request) {
 	} else {
 		err := tmpl.Execute(w, data)
 		if err != nil {
-			http.Error(w, "500 internal server error", http.StatusInternalServerError)
-			return
+			http.Error(w, "HTTP status 500 - Internal Server Error", http.StatusInternalServerError)
 		}
 	}
 }
