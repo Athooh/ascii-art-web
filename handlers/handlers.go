@@ -2,6 +2,7 @@ package handler
 
 import (
 	"html/template"
+	"log"
 	"net/http"
 	utils "web/utilities"
 )
@@ -21,18 +22,22 @@ func FormHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("templates/form.html"))
 	err := tmpl.Execute(w, nil)
 	if err != nil {
+		log.Printf("Error executing template: %v", err)
 		http.Error(w, "HTTP status 500 - Internal Server Errors", http.StatusInternalServerError)
 	}
 }
 
 func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("AsciiArtHandler called")
 	if r.Method != http.MethodPost {
+		log.Println("Method not allowed")
 		http.Error(w, "HTTP status 405 - method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
 
 	text := r.FormValue("text")
 	banner := r.FormValue("banner")
+	log.Printf("Text: %s, Banner: %s", text, banner)
 	pageData := PageData{Text: text}
 
 	if text == "" || containsNonASCII(text) {
@@ -45,17 +50,17 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 		banner = "standard"
 	}
 
-	// Load ASCII characters from the specified file in the 'banners' directory
 	asciiChars, err := utils.LoadAsciiChars("banners/" + banner + ".txt")
 	if err != nil {
+		log.Printf("Error loading banner: %v", err)
 		pageData.Error = "500 internal server error: could not load banner"
 		renderForm(w, pageData, r)
 		return
 	}
 
-	// Generate ASCII art
 	art, err := utils.GenerateAsciiArt(text, asciiChars)
 	if err != nil {
+		log.Printf("Error generating ASCII art: %v", err)
 		pageData.Error = err.Error()
 		renderForm(w, pageData, r)
 		return
@@ -76,16 +81,9 @@ func containsNonASCII(text string) bool {
 
 func renderForm(w http.ResponseWriter, data PageData, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("templates/form.html"))
-	if r.Header.Get("X-Requested-With") == "XMLHttpRequest" {
-		if data.Error != "" {
-			w.Write([]byte(data.Error))
-		} else {
-			w.Write([]byte(data.Art))
-		}
-	} else {
-		err := tmpl.Execute(w, data)
-		if err != nil {
-			http.Error(w, "HTTP status 500 - Internal Server Error", http.StatusInternalServerError)
-		}
+	err := tmpl.Execute(w, data)
+	if err != nil {
+		log.Printf("Error rendering form: %v", err)
+		http.Error(w, "HTTP status 500 - Internal Server Error", http.StatusInternalServerError)
 	}
 }
