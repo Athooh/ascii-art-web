@@ -53,7 +53,7 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 	asciiChars, err := utils.LoadAsciiChars("banners/" + banner + ".txt")
 	if err != nil {
 		log.Printf("Error loading banner: %v", err)
-		pageData.Error = "500 internal server error: could not load banner"
+		pageData.Error = "HTTP status 500 internal Server Error - could not load banner"
 		renderForm(w, pageData, r)
 		return
 	}

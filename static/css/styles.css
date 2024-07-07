@@ -62,7 +62,7 @@ input[type="submit"] {
 .result a {
     display: block; /* Ensure the link takes up the full width */
     margin: 20px auto;
-    width: 500px; /* Span 50% of the .result width */
+    width: 460px; /* Span 50% of the .result width */
     text-align: center;
     padding: 15px 20px;
     background-color: #007BFF;
