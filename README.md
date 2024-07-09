@@ -1,142 +1,114 @@
-# ASCII Art Web Server
-
-This repository contains a simple Go web server that allows users to generate ASCII art from text. The server handles different routes, serves static files, and uses HTML templates for rendering pages.
+# ASCII Art Web 
 
 ## Table of Contents
 
-1. [Overview](#overview)
-2. [Features](#features)
-3. [Installation](#installation)
-4. [Usage](#usage)
-5. [Routes](#routes)
-6. [Handlers](#handlers)
-7. [Static Files](#static-files)
-8. [Error Handling](#error-handling)
-9. [License](#license)
+- [Introduction](#introduction)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+  - [Main Function](#main-function)
+  - [Route Handlers](#route-handlers)
+- [Configuration](#configuration)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+- [Acknowledgments](#acknowledgments)
 
-## Overview
+## Introduction
 
-The ASCII Art Web Server is a Go application that provides a web interface for generating ASCII art from text inputs. Users can submit text through a web form, choose a banner style, and receive the corresponding ASCII art as output.
+The ASCII Art Web project is a simple Go-based web server that handles different routes and serves static files. It provides a user interface for generating ASCII art from text input.
 
-## Features
+## Getting Started
 
-- Serve HTML pages using templates.
-- Handle various routes, including form submission and static file serving.
-- Generate ASCII art from text inputs.
-- Handle different HTTP methods and provide appropriate responses.
+Follow these instructions to get the project up and running on your local machine for development and testing purposes.
 
-## Installation
+### Prerequisites
+
+- Go (>= 1.16)
+- Web browser
+
+### Installation
 
 1. Clone the repository:
-    ```bash
-    git clone https://github.com/yourusername/ascii-art-web-server.git
-    cd ascii-art-web-server
-    ```
+   ```sh
+   git clone https://github.com/seodhiambo/ascii-art-web.git
+   cd ascii-art-web
+   ```
 
-2. Build the Go application:
-    ```bash
-    go build
-    ```
-
-3. Run the server:
-    ```bash
-    ./ascii-art-web-server
-    ```
-
-The server will start on `http://localhost:8080`.
+2. Run the server:
+   ```sh
+   go run .
+   ```
 
 ## Usage
 
-1. Navigate to `http://localhost:8080` in your web browser.
+1. Navigate to http://localhost:8080 in your web browser.
 2. Enter the text you want to convert to ASCII art in the form.
 3. Select a banner style (optional).
 4. Submit the form to receive the generated ASCII art.
 
-## Routes
-
-- `/`: Root URL, serves the form for ASCII art generation.
-- `/ascii-art`: Handles form submissions and generates ASCII art.
-- `/favicon.ico`: Handles requests for the favicon, returns a 404 not found response.
-- `/static/`: Serves static files from the `./static` directory.
-
-## Handlers
-
-### FormHandler
-
-Handles requests to the root URL (`/`). Serves the form for ASCII art generation.
+#### Package Declaration
 
 ```go
-func FormHandler(w http.ResponseWriter, r *http.Request) {
-    if r.URL.Path != "/" {
-        http.Error(w, "HTTP status 404 - page not found", http.StatusNotFound)
-        return
-    }
-
-    tmpl := template.Must(template.ParseFiles("templates/form.html"))
-    err := tmpl.Execute(w, nil)
-    if err != nil {
-        http.Error(w, "HTTP status 500 - Internal Server Errors", http.StatusInternalServerError)
-    }
-}
+package main
 ```
+Declares that this file belongs to the main package, which is the starting point for a Go program.
 
-### AsciiArtHandler
+#### Imports
 
-Handles form submissions (`/ascii-art`). Generates ASCII art from the provided text and banner.
+The file imports three packages:
+- `fmt`: Provides functions for formatting text, such as printing to the console.
+- `net/http`: Provides HTTP client and server implementations.
+- `handler "web/handlers"`: Imports the handlers package from the web directory and aliases it as `handler`. This package presumably contains custom HTTP handlers.
 
-```go
-func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
-    if r.Method != http.MethodPost {
-        http.Error(w, "HTTP status 405 - method not allowed", http.StatusMethodNotAllowed)
-        return
-    }
+#### Main Function
 
-    text := r.FormValue("text")
-    banner := r.FormValue("banner")
+The `main` function sets up the server and routes:
 
-    if text == "" {
-        http.Error(w, "HTTP status 400 - Bad Request: 'text' parameter is required", http.StatusBadRequest)
-        return
-    }
+1. **Root Handler**: Maps the root URL (/) to the `FormHandler` function in the `handler` package.
+2. **ASCII Art Handler**: Maps the `/ascii-art` URL to the `AsciiArtHandler` function in the `handler` package.
+3. **Favicon Handler**: Maps requests for the favicon (`/favicon.ico`) to the `http.NotFound` handler, which returns a 404 not found response.
+4. **Static File Server**: Serves static files from the `./static` directory. Requests to URLs starting with `/static/` will have the `/static/` prefix stripped before looking for the corresponding file in the `./static` directory.
 
-    if banner == "" {
-        banner = "standard"
-    }
+The server starts on port 8080 and handles any startup errors.
 
-    asciiChars, err := asciiArt.LoadAsciiChars("banners/" + banner + ".txt")
-    if err != nil {
-        http.Error(w, "500 internal server error: could not load banner", http.StatusInternalServerError)
-        return
-    }
+### Route Handlers
 
-    art := utils.GenerateAsciiArt(text, asciiChars)
+The `handlers.go` file contains the implementation of the handlers referenced in the `main.go` file. These handlers manage specific routes and perform various tasks based on incoming HTTP requests.
 
-    tmpl := template.Must(template.ParseFiles("templates/result.html"))
-    err = tmpl.Execute(w, art)
-    if err != nil {
-        http.Error(w, "500 internal server error", http.StatusInternalServerError)
-    }
-}
-```
+#### Handlers Overview
 
-## Static Files
+1. **Form Handler**: Manages the root URL (/) and likely serves a form for user input.
+2. **ASCII Art Handler**: Processes the `/ascii-art` URL and generates ASCII art from the input text.
+3. **Favicon Handler**: Manages requests for the favicon (`/favicon.ico`), returning a 404 not found response.
 
-Static files are served from the `./static` directory. Requests to URLs starting with `/static/` will have the `/static/` prefix stripped before looking for the corresponding file in the `./static` directory.
+## Configuration
 
-```go
-http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
-```
+### Environment Variables
 
-## Error Handling
+Configure the following environment variables if necessary:
+- `PORT`: The port number the server will listen on (default: 8080).
 
-The server includes basic error handling for various scenarios, such as:
-- Returning a 404 error for invalid URLs.
-- Returning a 405 error for unsupported HTTP methods.
-- Handling a 500 - internal server error during template execution or file loading.
+## Contributing
+
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/YourFeature`)
+3. Commit your changes (`git commit -m 'Add some feature'`)
+4. Push to the branch (`git push origin feature/YourFeature`)
+5. Open a Pull Request
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+Distributed under the MIT License. See `LICENSE` for more information.
 
----
+## Contributors
+
+@steoiro
+@seodhiambo
+
+## Acknowledgments
+
+- [Go Documentation](https://golang.org/doc/)
+- [Standard Library Packages](https://pkg.go.dev/std)
 
