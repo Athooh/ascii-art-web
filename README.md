@@ -60,7 +60,7 @@ Declares that this file belongs to the main package, which is the starting point
 The file imports three packages:
 - `fmt`: Provides functions for formatting text, such as printing to the console.
 - `net/http`: Provides HTTP client and server implementations.
-- `handler "web/handlers"`: Imports the handlers package from the web directory and aliases it as `handler`. This package presumably contains custom HTTP handlers.
+- `handler "web/handlers"`: Imports the handlers package from the web directory and aliases it as `handler`. The package presumably contains custom HTTP handlers.
 
 #### Main Function
 
