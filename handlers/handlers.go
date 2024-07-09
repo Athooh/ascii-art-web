@@ -41,7 +41,7 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 	pageData := PageData{Text: text}
 
 	if text == "" || containsNonASCII(text) {
-		pageData.Error = "Bad Request: 'text' parameter is required and should contain only ASCII characters."
+		pageData.Error = "HTTP status 400 - Bad Request: 'text' parameter is required and should contain only ASCII characters."
 		renderForm(w, pageData, r)
 		return
 	}
