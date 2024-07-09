@@ -66,7 +66,7 @@ The file imports three packages:
 
 The `main` function sets up the server and routes:
 
-1. **Root Handler**: Maps the root URL (/) to the `FormHandler` function in the `handler` package.
+1. **Root Handler**: Maps the root URL `("/")` to the `FormHandler` function in the `handler` package.
 2. **ASCII Art Handler**: Maps the `/ascii-art` URL to the `AsciiArtHandler` function in the `handler` package.
 3. **Favicon Handler**: Maps requests for the favicon (`/favicon.ico`) to the `http.NotFound` handler, which returns a 404 not found response.
 4. **Static File Server**: Serves static files from the `./static` directory. Requests to URLs starting with `/static/` will have the `/static/` prefix stripped before looking for the corresponding file in the `./static` directory.
@@ -100,13 +100,13 @@ Configure the following environment variables if necessary:
 
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the MIT License. See [LICENSE](./LICENSE) for more information.
 
 ## Contributors
-
+```
 @steoiro
 @seodhiambo
-
+```
 ## Acknowledgments
 
 - [Go Documentation](https://golang.org/doc/)
