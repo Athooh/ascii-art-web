@@ -1,10 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-<<<<<<< HEAD
-    background-color: #03045e;
-=======
     background-color: #caf0f8;
->>>>>>> 8cba4dd (add: error file for logging errors)
     margin: 0;
     padding: 0;
 }
@@ -20,10 +16,14 @@ h1 {
     font-size: 40px;
 }
 
-.result, .error {
+.result {
     width: 90%;
-    max-width: 800px;
-    margin: auto;
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .result h1 {
@@ -35,14 +35,9 @@ form#asciiForm {
     padding: 40px 20px;
     display: flex;
     flex-direction: column;
-<<<<<<< HEAD
-    background-color: rgba(255, 255, 255, 0.4);
-    width: 500px;
-=======
     background-color: rgba(255, 255, 255, 0.5);
     width: 100%;
     max-width: 500px;
->>>>>>> 8cba4dd (add: error file for logging errors)
     height: fit-content;
     border-radius: 5px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -58,6 +53,7 @@ textarea {
 
 textarea#text {
     padding: 10px;
+    width: 95%;
 }
 
 input[type="submit"] {
@@ -99,20 +95,14 @@ input[type="submit"]:hover,
 }
 
 pre {
-<<<<<<< HEAD
-    width: 100%; /* or specify a fixed width like 800px */
-    /* max-width: 100%; */
-    background-color: rgba(255, 255, 255, 0.4);
-=======
     width: 100%;
     background-color: rgba(255, 255, 255, 0.5);
->>>>>>> 8cba4dd (add: error file for logging errors)
     padding: 20px;
     border-radius: 5px;
-    margin: 20px auto;
+    /* margin: 20px auto; */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     overflow-x: auto;
-    color: #fff;
+    color: #0056b3;
     font-size: 15px;
 }
 
@@ -163,6 +153,12 @@ a {
     .result a {
         font-size: 16px;
         padding: 10px 15px;
+    }
+
+    .result {
+        width: 90%;
+        max-width: 100%;
+        margin: auto;
     }
 
     pre {
