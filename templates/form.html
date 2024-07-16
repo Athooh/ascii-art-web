@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>ASCII Art Generator</h1>
+<<<<<<< HEAD
     
     <!-- Form for submitting text and banner style -->
     <form id="asciiForm" action="/ascii-art" method="POST">
@@ -15,6 +16,12 @@
         <textarea id="text" name="text" rows="10" cols="30" placeholder="Enter text here...">{{.Text}}</textarea><br><br>
         
         <label for="banner">Banner Style:</label><br>
+=======
+    <form id="asciiForm" action="/" method="POST">
+        <label for="text">Text only allowed:</label><br>
+        <textarea id="text" name="text" rows="8" cols="28" placeholder="Enter text here...">{{.Text}}</textarea><br><br>
+        <label for="banner">Select Banner Style:</label><br>
+>>>>>>> 8cba4dd (add: error file for logging errors)
         <select id="banner" name="banner">
             <option value="standard">Standard</option>
             <option value="shadow">Shadow</option>

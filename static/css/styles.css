@@ -1,6 +1,10 @@
 body {
     font-family: Arial, sans-serif;
+<<<<<<< HEAD
     background-color: #03045e;
+=======
+    background-color: #caf0f8;
+>>>>>>> 8cba4dd (add: error file for logging errors)
     margin: 0;
     padding: 0;
 }
@@ -17,7 +21,8 @@ h1 {
 }
 
 .result, .error {
-    width: 800px;
+    width: 90%;
+    max-width: 800px;
     margin: auto;
 }
 
@@ -30,23 +35,29 @@ form#asciiForm {
     padding: 40px 20px;
     display: flex;
     flex-direction: column;
+<<<<<<< HEAD
     background-color: rgba(255, 255, 255, 0.4);
     width: 500px;
+=======
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 100%;
+    max-width: 500px;
+>>>>>>> 8cba4dd (add: error file for logging errors)
     height: fit-content;
     border-radius: 5px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 textarea {
-    width: 99%;
-    height: 30px;
+    width: 100%;
+    height: 100px;
     border-radius: 5px;
-    margin: 0 0 20px;
+    /* margin: 0 20px; */
+    font-size: 15px;
 }
 
 textarea#text {
-    padding-block: 20px 10px;
-    font-size: 15px;
+    padding: 10px;
 }
 
 input[type="submit"] {
@@ -57,13 +68,14 @@ input[type="submit"] {
     cursor: pointer;
     font-size: 18px;
     border-radius: 5px;
-    margin-block: 20px;
+    margin-top: 20px;
 }
 
 .result a {
-    display: block; /* Ensure the link takes up the full width */
+    display: block;
     margin: 20px auto;
-    width: 460px; /* Span 50% of the .result width */
+    width: 90%;
+    max-width: 460px;
     text-align: center;
     padding: 15px 20px;
     background-color: #007BFF;
@@ -74,10 +86,7 @@ input[type="submit"] {
     border-radius: 5px;
 }
 
-input[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
+input[type="submit"]:hover,
 .result a:hover {
     background-color: #0056b3;
 }
@@ -90,9 +99,14 @@ input[type="submit"]:hover {
 }
 
 pre {
+<<<<<<< HEAD
     width: 100%; /* or specify a fixed width like 800px */
     /* max-width: 100%; */
     background-color: rgba(255, 255, 255, 0.4);
+=======
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+>>>>>>> 8cba4dd (add: error file for logging errors)
     padding: 20px;
     border-radius: 5px;
     margin: 20px auto;
@@ -102,32 +116,68 @@ pre {
     font-size: 15px;
 }
 
-/* screens */
+.error-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    padding: 20px;
+}
 
-@media (max-width: 575px) {
+.error-code {
+    font-size: 100px;
+    font-weight: bold;
+    color: #d9534f;
+}
+
+.error-message {
+    font-size: 24px;
+    color: #5a5a5a;
+}
+
+a {
+    color: #007BFF;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
     h1 {
         margin-top: 30px;
         font-size: 25px;
-        text-align: center;
     }
 
     form#asciiForm {
-        margin: 20px auto;     
-        width: 75%;
+        padding: 20px 10px;
     }
 
     textarea {
-        margin: 0px;
+        height: 80px;
+        font-size: 12px;
     }
 
-    input[type="submit"] {
-       margin-block: 0px;
+    input[type="submit"],
+    .result a {
+        font-size: 16px;
+        padding: 10px 15px;
     }
 
     pre {
-        width: 75%; /* or specify a fixed width like 800px */
-        max-width: 100%;
-        font-size: 5px;
+        font-size: 12px;
+    }
+
+    .error-code {
+        font-size: 50px;
+    }
+
+    .error-message {
+        font-size: 18px;
+    }
+
+    a {
+        font-size: 16px;
     }
 }
-

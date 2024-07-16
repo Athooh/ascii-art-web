@@ -10,16 +10,16 @@ import (
 
 // PageData struct holds data to be rendered in templates
 type PageData struct {
-	Text  string // Input text from the form
-	Art   string // Generated ASCII art based on input text and banner
-	Error string // Error message, if any
+	Text  string
+	Art   string
+	Error string
 }
 
 // FormHandler handles GET requests to render the form template
 func FormHandler(w http.ResponseWriter, r *http.Request) {
 	// Handle requests only at root URL
 	if r.URL.Path != "/" {
-		http.Error(w, "HTTP status 404 - Page not found", http.StatusNotFound)
+		http.Error(w, "HTTP status 404 - page not found", http.StatusNotFound)
 		return
 	}
 
@@ -28,7 +28,7 @@ func FormHandler(w http.ResponseWriter, r *http.Request) {
 	err := tmpl.Execute(w, nil)
 	if err != nil {
 		log.Printf("Error executing template: %v", err)
-		http.Error(w, "HTTP status 500 - Internal Server Error", http.StatusInternalServerError)
+		http.Error(w, "HTTP status 500 - Internal Server Errors", http.StatusInternalServerError)
 	}
 }
 
@@ -39,7 +39,7 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 	// Check if request method is POST
 	if r.Method != http.MethodPost {
 		log.Println("Method not allowed")
-		http.Error(w, "HTTP status 405 - Method not allowed", http.StatusMethodNotAllowed)
+		http.Error(w, "HTTP status 405 - method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
 
@@ -53,8 +53,7 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Validate text input for non-ASCII characters
 	if text == "" || containsNonASCII(text) {
-		pageData.Error = "HTTP status 400 - Bad Request: 'text' parameter is required and should contain only ASCII characters."
-		renderForm(w, pageData, r)
+		renderError(w, 400, "HTTP status 400 - Bad Request")
 		return
 	}
 
@@ -67,7 +66,7 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 	asciiChars, err := utils.LoadAsciiChars("banners/" + banner + ".txt")
 	if err != nil {
 		log.Printf("Error loading banner: %v", err)
-		pageData.Error = "HTTP status 500 - Internal Server Error: could not load banner"
+		pageData.Error = "HTTP status 500 internal Server Error - could not load banner"
 		renderForm(w, pageData, r)
 		return
 	}
@@ -76,15 +75,12 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 	art, err := utils.GenerateAsciiArt(text, asciiChars)
 	if err != nil {
 		log.Printf("Error generating ASCII art: %v", err)
-		pageData.Error = err.Error()
-		renderForm(w, pageData, r)
+		renderError(w, 500, err.Error())
 		return
 	}
 
 	// Assign generated ASCII art to PageData
 	pageData.Art = art
-
-	// Render form template with updated PageData
 	renderForm(w, pageData, r)
 }
 
@@ -98,12 +94,21 @@ func containsNonASCII(text string) bool {
 	return false
 }
 
-// renderForm renders the form template with provided data
 func renderForm(w http.ResponseWriter, data PageData, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("templates/form.html"))
 	err := tmpl.Execute(w, data)
 	if err != nil {
 		log.Printf("Error rendering form: %v", err)
+		renderError(w, 500, "HTTP status 500 - Internal Server Error")
+	}
+}
+
+func renderError(w http.ResponseWriter, code int, message string) {
+	w.WriteHeader(code)
+	tmpl := template.Must(template.ParseFiles("templates/error.html"))
+	err := tmpl.Execute(w, PageData{Code: code, Message: message})
+	if err != nil {
+		log.Printf("Error rendering error page: %v", err)
 		http.Error(w, "HTTP status 500 - Internal Server Error", http.StatusInternalServerError)
 	}
 }
