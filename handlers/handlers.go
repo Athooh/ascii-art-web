@@ -70,18 +70,13 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func AboutHandler(w http.ResponseWriter, r *http.Request) {
-    tmpl := template.Must(template.ParseFiles("templates/about.html"))
-    tmpl.Execute(w, nil)
+	tmpl := template.Must(template.ParseFiles("templates/about.html"))
+	tmpl.Execute(w, nil)
 }
 
 func HowItWorksHandler(w http.ResponseWriter, r *http.Request) {
-    tmpl := template.Must(template.ParseFiles("templates/how-it-works.html"))
-    tmpl.Execute(w, nil)
-}
-
-func ContactHandler(w http.ResponseWriter, r *http.Request) {
-    tmpl := template.Must(template.ParseFiles("templates/contact.html"))
-    tmpl.Execute(w, nil)
+	tmpl := template.Must(template.ParseFiles("templates/how-it-works.html"))
+	tmpl.Execute(w, nil)
 }
 
 func containsNonASCII(text string) bool {

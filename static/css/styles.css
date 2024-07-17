@@ -208,6 +208,7 @@ a {
     font-weight: 600;
 }
 
+
 /* user guide */
 .play-info {
     width: 80%;
@@ -219,7 +220,7 @@ a {
     flex-direction: column;
 }
 
-.play-info ol li {
+.play-info ol li, .about-info ol li {
     padding-block: 5px;
     list-style: decimal;
 }
@@ -243,73 +244,6 @@ a {
     color: #5a5a5a;
 }
 
-/* contact section */
-.contact-form {
-    max-width: 500px;
-    /* margin: 0 auto; */
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-}
-
-/* Style for form fields and buttons */
-.contact-form input[type=text], 
-.contact-form textarea, 
-.contact-form input[type=email] {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.contact-form textarea {
-    height: 150px;
-}
-
-.contact-form input[type=submit] {
-    background-color: #007BFF;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-}
-
-.contact-form input[type=submit]:hover {
-    background-color: #439eff;
-}
-
-.contact-info {
-    width: 80%;
-    margin: 30px auto;
-}
-
-.cont-box {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    width: 80%;
-}
-
-.seth, .stella {
-    display: flex;
-    flex-direction: column;
-    height: fit-content;
-}
-
-.seth h3 .stella h3 {
-    margin-block: 0px;
-}
-
-.seth p .stella p {
-    margin-block: 3px;
-}
 
 /* Responsive styles */
 @media (max-width: 600px) {
