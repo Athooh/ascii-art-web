@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+HR:wght@100..400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 body {
     font-family: Arial, sans-serif;
     background-color: #caf0f8;
@@ -9,11 +12,59 @@ a {
     text-decoration: none;
 }
 
+p {
+    color: #5a5a5a;
+    font-family: "poppins", sans-serif;
+}
+
 h1 {
     margin-top: 50px;
     color: #007BFF;
     text-align: center;
     font-size: 40px;
+}
+
+/* NAVIGATION */
+nav {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+nav .navigation {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+ul li {
+    text-decoration: none;
+    list-style: none;
+    padding-inline: 10px;
+}
+
+ul li a, ol li {
+    color: #5a5a5a;
+}
+
+ol li span {
+    font-weight: 600;
+}
+
+.logo p {
+    font-family: "Playwrite HR", cursive;
+    font-size: 28px;
+    font-weight: 600;
+    color: #007BFF;
+}
+
+.logo p span {
+    color: red;
 }
 
 .result {
@@ -94,6 +145,7 @@ input[type="submit"]:hover,
     border-radius: 5px;
 }
 
+
 pre {
     width: 100%;
     background-color: rgba(255, 255, 255, 0.5);
@@ -133,6 +185,132 @@ a {
     font-size: 18px;
 }
 
+/* About */
+
+.title h2 {
+    text-align: center;
+    font-size: 28px;
+}
+
+.line {
+    margin: 0 auto;
+    text-align: center;
+    width: 100px;
+    border-bottom: 3px solid #fff;
+}
+
+.about-info {
+    width: 80%;
+    margin: 30px auto;
+}
+
+.about-info p span {
+    font-weight: 600;
+}
+
+/* user guide */
+.play-info {
+    width: 80%;
+    margin: 30px auto;
+}
+
+.play-info ol ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.play-info ol li {
+    padding-block: 5px;
+    list-style: decimal;
+}
+
+.play-info ol ul li {
+    list-style: circle;
+}
+
+.play-info ul li span {
+    font-weight: 600;
+}
+
+.tips ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.tips ul li {
+    list-style: circle;
+    padding-block: 5px;
+    color: #5a5a5a;
+}
+
+/* contact section */
+.contact-form {
+    max-width: 500px;
+    /* margin: 0 auto; */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Style for form fields and buttons */
+.contact-form input[type=text], 
+.contact-form textarea, 
+.contact-form input[type=email] {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.contact-form textarea {
+    height: 150px;
+}
+
+.contact-form input[type=submit] {
+    background-color: #007BFF;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.contact-form input[type=submit]:hover {
+    background-color: #439eff;
+}
+
+.contact-info {
+    width: 80%;
+    margin: 30px auto;
+}
+
+.cont-box {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 80%;
+}
+
+.seth, .stella {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+}
+
+.seth h3 .stella h3 {
+    margin-block: 0px;
+}
+
+.seth p .stella p {
+    margin-block: 3px;
+}
+
 /* Responsive styles */
 @media (max-width: 600px) {
     h1 {
@@ -142,6 +320,7 @@ a {
 
     form#asciiForm {
         padding: 20px 10px;
+        width:90%;
     }
 
     textarea {
@@ -157,7 +336,7 @@ a {
 
     .result {
         width: 90%;
-        max-width: 100%;
+        max-width: 85%;
         margin: auto;
     }
 

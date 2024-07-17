@@ -69,6 +69,21 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 	renderForm(w, pageData)
 }
 
+func AboutHandler(w http.ResponseWriter, r *http.Request) {
+    tmpl := template.Must(template.ParseFiles("templates/about.html"))
+    tmpl.Execute(w, nil)
+}
+
+func HowItWorksHandler(w http.ResponseWriter, r *http.Request) {
+    tmpl := template.Must(template.ParseFiles("templates/how-it-works.html"))
+    tmpl.Execute(w, nil)
+}
+
+func ContactHandler(w http.ResponseWriter, r *http.Request) {
+    tmpl := template.Must(template.ParseFiles("templates/contact.html"))
+    tmpl.Execute(w, nil)
+}
+
 func containsNonASCII(text string) bool {
 	for _, char := range text {
 		if char > 127 {

@@ -3,13 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>ASCII Art Generator</title>
     <link rel="stylesheet" href="/static/css/styles.css"> <!-- Link to external CSS stylesheet -->
 </head>
 <body>
+    <nav>
+        <div class="navigation">
+          <div class="logo">
+            <p>Ascii <span>Art</span> Generator</p>
+          </div>
+            <ul>
+              <li><a href="/">Home</a></li>
+                <li><a href="about">About</a></li>
+                <li><a href="user-guide">How To Play</a></li>
+                <!-- <li><a href="play">Play Game</a></li> -->
+                <!-- <li><a href="http://learn.zone01kisumu.ke/git/seodhiambo/ascii-art-web"><i class="fa-solid fa-user"></i> Seth</a></li>
+                <li><a href="http://learn.zone01kisumu.ke/git/steoiro/ascii-art-web"><i class="fa-solid fa-user"></i> Stella</a></li> -->
+                <li><a href="contact">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
     <h1>ASCII Art Generator</h1>
 
-    <form id="asciiForm" action="/" method="POST">
+    <form id="asciiForm" action="/play" method="POST">
         <label for="text">Text only allowed:</label><br>
         <textarea id="text" name="text" rows="5" cols="25" placeholder="Enter text here...">{{.Text}}</textarea><br><br>
         <label for="banner">Select Banner Style:</label><br>
@@ -33,10 +50,11 @@
     <div class="result">
         <h1>ASCII Art Result</h1>
         <pre>{{.Art}}</pre>
-        <a href="/">Refresh</a> <!-- Link to refresh the page -->
+        <a href="/play">Refresh</a> <!-- Link to refresh the page -->
     </div>
     {{end}}
 
     <script src="/static/js/scripts.js" defer></script> <!-- Link to external JavaScript file -->
 </body>
 </html>
+
