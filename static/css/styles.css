@@ -67,6 +67,21 @@ ol li span {
     color: red;
 }
 
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.hamburger i {
+    font-size: 28px;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+
 .result {
     width: 90%;
     max-width: 700px;
@@ -98,7 +113,6 @@ textarea {
     width: 100%;
     height: 100px;
     border-radius: 5px;
-    /* margin: 0 20px; */
     font-size: 15px;
 }
 
@@ -145,13 +159,11 @@ input[type="submit"]:hover,
     border-radius: 5px;
 }
 
-
 pre {
     width: 100%;
     background-color: rgba(255, 255, 255, 0.5);
     padding: 20px;
     border-radius: 5px;
-    /* margin: 20px auto; */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     overflow-x: auto;
     color: #0056b3;
@@ -208,7 +220,6 @@ a {
     font-weight: 600;
 }
 
-
 /* user guide */
 .play-info {
     width: 80%;
@@ -244,8 +255,44 @@ a {
     color: #5a5a5a;
 }
 
-
 /* Responsive styles */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    ul li {
+        padding-inline: 0;
+        padding-block: 10px;
+    }
+
+    ul li a {
+        display: block;
+        padding: 10px 20px;
+        color: #5a5a5a;
+        border-bottom: 1px solid #eaeaea;
+    }
+
+    ul li a:hover {
+        background-color: #f5f5f5;
+    }
+}
+
 @media (max-width: 600px) {
     h1 {
         margin-top: 30px;

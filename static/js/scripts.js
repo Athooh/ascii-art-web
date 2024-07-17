@@ -32,3 +32,13 @@ document.getElementById('asciiForm').onsubmit = function(e) {
         console.error('Error:', error); // Log any errors to the console
     });
 };
+
+// hamburger menu
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+});
