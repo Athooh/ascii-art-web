@@ -25,7 +25,7 @@
     </nav>
     <h1>ASCII Art Generator</h1>
 
-    <form id="asciiForm" action="/play" method="POST">
+    <form id="asciiForm" action="/" method="POST">
         <label for="text">Text only allowed:</label><br>
         <textarea id="text" name="text" rows="5" cols="25" placeholder="Enter text here...">{{.Text}}</textarea><br><br>
         <label for="banner">Select Banner Style:</label><br>
@@ -49,7 +49,7 @@
     <div class="result">
         <h1>ASCII Art Result</h1>
         <pre>{{.Art}}</pre>
-        <a href="/play">Refresh</a> <!-- Link to refresh the page -->
+        <a href="/">Refresh</a> <!-- Link to refresh the page -->
     </div>
     {{end}}
 

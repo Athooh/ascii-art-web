@@ -35,7 +35,7 @@ document.getElementById('asciiForm').onsubmit = function(e) {
 
 // hamburger menu
 document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.querySelector('.hamburger');
+    const hamburger = document.querySelector('.fa-bars');
     const navLinks = document.querySelector('.nav-links');
 
     hamburger.addEventListener('click', () => {
